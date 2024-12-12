@@ -5,7 +5,7 @@ import cosmic from "../lib/cosmic";
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { slide?: string };
+  searchParams: Promise<{ slide?: string }>;
 }) {
   const { slide } = await searchParams;
 
