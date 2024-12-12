@@ -1,9 +1,19 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { useRouter, useSearchParams } from "next/navigation";
+
+type Slide = {
+  title: string;
+  metadata: {
+    slide_image?: { imgix_url: string };
+    slide_title?: string;
+    slide_content: string;
+  };
+};
 
 const fadeVariants = {
   hidden: {
@@ -14,7 +24,13 @@ const fadeVariants = {
   },
 };
 
-export default function Slideshow({ slides, initialSlide = 0 }) {
+export default function Slideshow({
+  slides,
+  initialSlide = 0,
+}: {
+  slides: Slide[];
+  initialSlide?: number;
+}) {
   const [currentIndex, setCurrentIndex] = useState(initialSlide);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -23,8 +39,17 @@ export default function Slideshow({ slides, initialSlide = 0 }) {
     setCurrentIndex(initialSlide);
   }, [initialSlide]);
 
+  const updateURL = useCallback(
+    (index: number) => {
+      const params = new URLSearchParams(searchParams);
+      params.set("slide", (index + 1).toString());
+      router.push(`?${params.toString()}`, { scroll: false });
+    },
+    [router, searchParams]
+  );
+
   useEffect(() => {
-    const handleKeyPress = (e) => {
+    const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") {
         const nextIndex = (currentIndex + 1) % slides.length;
         setCurrentIndex(nextIndex);
@@ -38,13 +63,7 @@ export default function Slideshow({ slides, initialSlide = 0 }) {
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [currentIndex, slides.length]);
-
-  const updateURL = (index: number) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("slide", (index + 1).toString());
-    router.push(`?${params.toString()}`, { scroll: false });
-  };
+  }, [currentIndex, slides.length, updateURL]);
 
   const currentSlide = slides[currentIndex];
 
@@ -78,10 +97,10 @@ export default function Slideshow({ slides, initialSlide = 0 }) {
             <div className="prose prose-invert prose-sm sm:prose-base max-w-3xl mx-auto px-2">
               <ReactMarkdown
                 components={{
-                  a: ({ node, ...props }) => (
+                  a: ({ ...props }) => (
                     <a target="_blank" rel="noopener noreferrer" {...props} />
                   ),
-                  img: ({ node, src, alt, ...props }) => {
+                  img: ({ src, alt, ...props }) => {
                     if (src?.endsWith(".mp4")) {
                       return (
                         <video
