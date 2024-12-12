@@ -2,20 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-size: 20px;
+  @apply bg-gray-900;
+}
+
+/* Custom prose styles */
+.prose h1 {
+  font-size: 4rem !important;
+  line-height: 1.2 !important;
+  margin-bottom: 1rem !important;
+  font-weight: 700 !important;
+}
+
+.prose h2 {
+  font-size: 2rem !important;
+  line-height: 1.2 !important;
+  margin-bottom: 1.5rem !important;
+  margin-top: 1.5rem !important;
+  font-weight: 700 !important;
+}
+
+.prose ul {
+  list-style-type: disc !important;
+  margin-left: 2rem !important;
+}
+
+.prose li {
+  margin-bottom: 0.5rem !important;
+}
+
+.prose ol {
+  list-style-type: decimal !important;
+  margin-left: 2rem !important;
+}
+
+img {
+  @apply rounded-lg;
+}
+
+.prose a {
+  color: #2d6cdf !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+.prose a:hover {
+  opacity: 0.8 !important;
+}
+
+.prose p {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Custom scrollbar styles */
+.prose::-webkit-scrollbar {
+  width: 8px;
+}
+
+.prose::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.prose::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.prose::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
