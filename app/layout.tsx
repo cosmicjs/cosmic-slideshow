@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Cosmic Slideshow",
-  description: "Cosmic CMS Product Updates Slideshow",
+  title: "Cosmic 2024 Year End Wrap Up",
+  description: "Cosmic 2024 Year End Wrap Up Slideshow",
 };
 
 export default function RootLayout({
