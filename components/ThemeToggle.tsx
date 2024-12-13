@@ -15,7 +15,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-4 right-4 z-10 p-2 hover:opacity-80 group"
+      className="p-2 hover:opacity-80 group"
       aria-label={
         theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
       }
