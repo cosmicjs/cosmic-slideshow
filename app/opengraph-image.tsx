@@ -1,12 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
+import { getSettings } from "@/lib/cosmic";
 
 export default async function Image() {
+  const settings = await getSettings();
   return new ImageResponse(
     (
       <img
-        src="https://imgix.cosmicjs.com/afdaeb50-b8c6-11ef-bee4-3bb1d3c55332-cosmic-year-2024.png?w=1200"
-        alt="Cosmic 2024 Year End Wrap Up"
+        src={`${settings.metadata.og_image.imgix_url}?w=1200`}
+        alt={settings.metadata.title}
       />
     )
   );

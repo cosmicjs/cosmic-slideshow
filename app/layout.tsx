@@ -1,18 +1,12 @@
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
-import cosmic from "@/lib/cosmic";
+import { getSettings } from "@/lib/cosmic";
 
 export const generateMetadata = async () => {
-  const { object: settings } = await cosmic.objects
-    .findOne({
-      type: "settings",
-      slug: "settings",
-    })
-    .props(`metadata`);
-  const { metadata } = settings;
+  const settings = await getSettings();
   return {
-    title: metadata.title,
-    description: metadata.description,
+    title: settings.metadata.title,
+    description: settings.metadata.description,
   };
 };
 

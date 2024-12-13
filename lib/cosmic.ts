@@ -6,3 +6,19 @@ const cosmic = createBucketClient({
 });
 
 export default cosmic;
+
+export const getSettings = async (): Promise<{
+  metadata: {
+    title: string;
+    description: string;
+    og_image: { imgix_url: string };
+  };
+}> => {
+  const { object: settings } = await cosmic.objects
+    .findOne({
+      type: "settings",
+      slug: "settings",
+    })
+    .props(`metadata`);
+  return settings;
+};
