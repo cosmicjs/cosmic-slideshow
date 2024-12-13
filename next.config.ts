@@ -3,7 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["imgix.cosmicjs.com"],
+    remotePatterns: [
+      {
+        hostname: "imgix.cosmicjs.com",
+      },
+    ],
   },
 };
 
