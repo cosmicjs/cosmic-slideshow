@@ -1,9 +1,19 @@
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
+import cosmic from "@/lib/cosmic";
 
-export const metadata = {
-  title: "Cosmic 2024 Year End Wrap Up",
-  description: "Cosmic 2024 Year End Wrap Up Slideshow",
+export const generateMetadata = async () => {
+  const { object: settings } = await cosmic.objects
+    .findOne({
+      type: "settings",
+      slug: "settings",
+    })
+    .props(`metadata`);
+  const { metadata } = settings;
+  return {
+    title: metadata.title,
+    description: metadata.description,
+  };
 };
 
 export default function RootLayout({

@@ -31,7 +31,7 @@ export default async function Home({
         </Link>
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/cosmicjs/year-end-wrap-up-2024"
+            href="https://github.com/cosmicjs/cosmic-slideshow"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
