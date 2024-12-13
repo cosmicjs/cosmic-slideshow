@@ -2,7 +2,7 @@ import Link from "next/link";
 import Slideshow from "@/components/Slideshow";
 import cosmic from "@/lib/cosmic";
 import ThemeToggle from "@/components/ThemeToggle";
-import { HomeIcon } from "lucide-react";
+import { HomeIcon, GithubIcon } from "lucide-react";
 
 export default async function Home({
   searchParams,
@@ -32,7 +32,18 @@ export default async function Home({
       >
         <HomeIcon size={24} className="text-gray-900 dark:text-white" />
       </Link>
-      <ThemeToggle />
+      <div className="fixed top-4 right-12 z-10 flex items-center gap-4">
+        <a
+          href="https://github.com/cosmicjs/year-end-wrap-up-2024"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          aria-label="View on GitHub"
+        >
+          <GithubIcon size={24} />
+        </a>
+        <ThemeToggle />
+      </div>
       <Slideshow slides={objects} initialSlide={initialSlide} />
     </main>
   );
