@@ -113,7 +113,7 @@ export default function Slideshow({
                   <Image
                     src={currentSlide.metadata.slide_image.imgix_url}
                     alt={currentSlide.title}
-                    className="h-full w-auto object-contain"
+                    className="h-full w-auto object-contain rounded-lg"
                     width={1000}
                     height={1000}
                   />
@@ -154,7 +154,7 @@ export default function Slideshow({
           </motion.div>
         </AnimatePresence>
       </div>
-      <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-8 flex items-center gap-4 sm:gap-6 bg-white/80 dark:bg-gray-800/80 px-4 py-2 rounded-full backdrop-blur-sm">
+      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 sm:right-8 sm:left-auto sm:translate-x-0 flex items-center gap-4 sm:gap-6 bg-white/80 dark:bg-gray-800/80 px-4 py-2 rounded-full backdrop-blur-sm">
         <button
           onClick={() => handleNavigation("prev")}
           className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-2xl sm:text-3xl p-2"
