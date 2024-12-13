@@ -25,7 +25,7 @@ export default async function Home({
 
   return (
     <main className="h-screen w-screen overflow-hidden pb-16 bg-gray-100 dark:bg-gray-900 transition-colors">
-      <div className="fixed top-0 left-0 right-0 z-10 md:bg-transparent md:dark:bg-transparent bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-1 px-4 flex justify-between items-center">
+      <div className="fixed top-0 left-0 right-0 z-10 md:bg-transparent md:dark:bg-transparent bg-white/80 dark:bg-gray-800/80 md:backdrop-blur-none backdrop-blur-sm py-1 px-4 flex justify-between items-center">
         <Link href="/" className="p-2" aria-label="Go to home page">
           <HomeIcon size={24} className="text-gray-900 dark:text-white" />
         </Link>
