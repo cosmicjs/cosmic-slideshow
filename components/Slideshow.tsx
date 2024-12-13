@@ -154,20 +154,20 @@ export default function Slideshow({
           </motion.div>
         </AnimatePresence>
       </div>
-      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 sm:right-8 sm:left-auto sm:translate-x-0 flex items-center gap-4 sm:gap-6 bg-white/80 dark:bg-gray-800/80 px-4 py-2 rounded-full backdrop-blur-sm">
+      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 sm:right-8 sm:left-auto sm:translate-x-0 flex items-center gap-2 sm:gap-6 bg-white/80 dark:bg-gray-800/80 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full backdrop-blur-sm">
         <button
           onClick={() => handleNavigation("prev")}
-          className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-xl sm:text-3xl p-1 sm:p-2"
+          className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-lg sm:text-3xl p-0.5 sm:p-2"
           aria-label="Previous slide"
         >
           ←
         </button>
-        <span className="text-gray-600 dark:text-gray-300 text-sm sm:text-lg font-medium min-w-[3rem] text-center">
+        <span className="text-gray-600 dark:text-gray-300 text-xs sm:text-lg font-medium min-w-[2.5rem] sm:min-w-[3rem] text-center">
           {currentIndex + 1} / {slides.length}
         </span>
         <button
           onClick={() => handleNavigation("next")}
-          className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-xl sm:text-3xl p-1 sm:p-2"
+          className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-lg sm:text-3xl p-0.5 sm:p-2"
           aria-label="Next slide"
         >
           →
