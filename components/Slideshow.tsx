@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTheme } from "@/app/context/ThemeContext";
-
+import { useSwipeable } from "react-swipeable";
+import Image from "next/image";
 type Slide = {
   title: string;
   metadata: {
@@ -81,81 +82,92 @@ export default function Slideshow({
 
   const currentSlide = slides[currentIndex];
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => handleNavigation("next"),
+    onSwipedRight: () => handleNavigation("prev"),
+    preventScrollOnSwipe: true,
+    trackMouse: false,
+  });
+
   return (
     <div className="h-screen w-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white relative transition-colors">
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={currentIndex}
-          variants={fadeVariants}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          transition={{ duration: 0.3 }}
-          className="h-[calc(100%-2rem)] flex flex-col items-center max-w-6xl mx-auto overflow-y-auto"
-        >
-          <div className="w-full px-2 sm:px-8 py-4 mb-12">
-            {currentSlide.metadata.slide_title && (
-              <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center px-2">
-                {currentSlide.metadata.slide_title}
-              </h1>
-            )}
-            {currentSlide.metadata.slide_image && (
-              <div className="h-[30vh] sm:h-[50vh] min-h-[30vh] sm:min-h-[50vh] flex items-center justify-center mb-4 sm:mb-8">
-                <img
-                  src={currentSlide.metadata.slide_image.imgix_url}
-                  alt={currentSlide.title}
-                  className="h-full w-auto object-contain"
-                />
-              </div>
-            )}
-            <div
-              className={`prose ${
-                theme === "dark" ? "prose-invert" : ""
-              } prose-sm sm:prose-base max-w-3xl mx-auto px-2`}
-            >
-              <ReactMarkdown
-                components={{
-                  a: ({ ...props }) => (
-                    <a target="_blank" rel="noopener noreferrer" {...props} />
-                  ),
-                  img: ({ src, alt, ...props }) => {
-                    if (src?.endsWith(".mp4")) {
-                      return (
-                        <video
-                          autoPlay
-                          muted
-                          playsInline
-                          loop
-                          src={src}
-                          className="w-full mx-auto"
-                          {...props}
-                        />
-                      );
-                    }
-                    return <img src={src} alt={alt} {...props} />;
-                  },
-                }}
+      <div {...swipeHandlers} className="h-full w-full">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={currentIndex}
+            variants={fadeVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{ duration: 0.25 }}
+            className="h-[calc(100%-2rem)] flex flex-col items-center max-w-6xl mx-auto overflow-y-auto"
+          >
+            <div className="w-full px-2 sm:px-8 py-4 mb-12">
+              {currentSlide.metadata.slide_title && (
+                <h1 className="text-3xl mt-12 md:mt-6 sm:text-4xl font-bold mb-6 sm:mb-8 text-center px-4">
+                  {currentSlide.metadata.slide_title}
+                </h1>
+              )}
+              {currentSlide.metadata.slide_image && (
+                <div className="h-[35vh] sm:h-[50vh] min-h-[35vh] sm:min-h-[50vh] flex items-center justify-center mb-6 sm:mb-8">
+                  <Image
+                    src={currentSlide.metadata.slide_image.imgix_url}
+                    alt={currentSlide.title}
+                    className="h-full w-auto object-contain"
+                    width={1000}
+                    height={1000}
+                  />
+                </div>
+              )}
+              <div
+                className={`prose ${
+                  theme === "dark" ? "prose-invert" : ""
+                } prose-base sm:prose-lg max-w-3xl mx-auto px-4 sm:px-2`}
               >
-                {currentSlide.metadata.slide_content}
-              </ReactMarkdown>
+                <ReactMarkdown
+                  components={{
+                    a: ({ ...props }) => (
+                      <a target="_blank" rel="noopener noreferrer" {...props} />
+                    ),
+                    img: ({ src, alt, ...props }) => {
+                      if (src?.endsWith(".mp4")) {
+                        return (
+                          <video
+                            autoPlay
+                            muted
+                            playsInline
+                            loop
+                            src={src}
+                            className="w-full mx-auto"
+                            {...props}
+                          />
+                        );
+                      }
+                      return <img src={src} alt={alt} {...props} />;
+                    },
+                  }}
+                >
+                  {currentSlide.metadata.slide_content}
+                </ReactMarkdown>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-      <div className="fixed bottom-2 sm:bottom-4 right-4 sm:right-8 flex items-center gap-4">
+          </motion.div>
+        </AnimatePresence>
+      </div>
+      <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-8 flex items-center gap-4 sm:gap-6 bg-white/80 dark:bg-gray-800/80 px-4 py-2 rounded-full backdrop-blur-sm">
         <button
           onClick={() => handleNavigation("prev")}
-          className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-2xl sm:text-3xl p-2"
           aria-label="Previous slide"
         >
           ←
         </button>
-        <span className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">
+        <span className="text-gray-600 dark:text-gray-300 text-base sm:text-lg font-medium min-w-[3rem] text-center">
           {currentIndex + 1} / {slides.length}
         </span>
         <button
           onClick={() => handleNavigation("next")}
-          className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-2xl sm:text-3xl p-2"
           aria-label="Next slide"
         >
           →
