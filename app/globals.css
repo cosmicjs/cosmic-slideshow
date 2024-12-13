@@ -42,7 +42,7 @@ body {
 
 .prose ul {
   list-style-type: disc !important;
-  margin-left: 2rem !important;
+  margin-left: .5rem !important;
 }
 
 .prose li {
