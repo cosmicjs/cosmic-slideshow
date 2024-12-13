@@ -1,12 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+import typography from "@tailwindcss/typography";
+
+export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {},
   },
-  plugins: [import("@tailwindcss/typography")],
+  plugins: [typography],
 };

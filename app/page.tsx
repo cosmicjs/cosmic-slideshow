@@ -1,6 +1,8 @@
 import Link from "next/link";
-import Slideshow from "../components/Slideshow";
-import cosmic from "../lib/cosmic";
+import Slideshow from "@/components/Slideshow";
+import cosmic from "@/lib/cosmic";
+import ThemeToggle from "@/components/ThemeToggle";
+import { HomeIcon } from "lucide-react";
 
 export default async function Home({
   searchParams,
@@ -22,12 +24,15 @@ export default async function Home({
     : 0;
 
   return (
-    <main className="h-screen w-screen overflow-hidden pt-6 pb-16 bg-gray-900">
-      <h1 className="text-white text-center text-4xl font-bold mb-0 pb-6">
-        <Link href="/" className="hover:opacity-80">
-          Cosmic 2024 Year End Wrap Up 🎉
-        </Link>
-      </h1>
+    <main className="h-screen w-screen overflow-hidden pb-16 bg-gray-100 dark:bg-gray-900 transition-colors">
+      <Link
+        href="/"
+        className="fixed top-4 left-4 z-10 p-2 bg-transparent"
+        aria-label="Go to home page"
+      >
+        <HomeIcon size={24} className="text-gray-900 dark:text-white" />
+      </Link>
+      <ThemeToggle />
       <Slideshow slides={objects} initialSlide={initialSlide} />
     </main>
   );
