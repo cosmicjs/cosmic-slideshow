@@ -25,7 +25,7 @@ export default function ThemeToggle() {
       ) : (
         <MoonIcon size={24} className="text-gray-900" />
       )}
-      <span className="absolute hidden group-hover:block right-0 top-full mt-2 px-3 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm rounded-md whitespace-nowrap">
+      <span className="absolute hidden md:group-hover:block right-2 top-full mt-0 px-3 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm rounded-md whitespace-nowrap">
         Toggle theme ({isMac ? "⌘ /" : "Ctrl + /"})
       </span>
     </button>
