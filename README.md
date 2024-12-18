@@ -7,7 +7,7 @@
 ## Getting started
 1. Create a new project in the [Cosmic dashboard](https://app.cosmicjs.com/login).
 2. In your project, go to the Settings > Import / Export area.
-3. Download and install the [Bucket JSON file](https://github.com/cosmicjs/cosmic-slideshow/blob/main/bucket.json) to install the slideshow content model and demo content.
+3. Download and install the [Bucket JSON file](https://github.com/cosmicjs/cosmic-slideshow/blob/main/bucket.json) to install the slideshow content model and demo content. See screenshot below:
 <img width="1416" alt="CleanShot 2024-12-18 at 12 16 41@2x" src="https://github.com/user-attachments/assets/4d77b9ec-977f-48d6-9a4c-257734e7f76d" />
 
 
