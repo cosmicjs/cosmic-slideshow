@@ -8,7 +8,6 @@
 1. Create a new project in the [Cosmic dashboard](https://app.cosmicjs.com/login).
 2. In your project, go to the Settings > Import / Export area.
 3. Download and install the [Bucket JSON file](https://github.com/cosmicjs/cosmic-slideshow/blob/main/bucket.json) to install the slideshow content model and demo content.
-4. In the Cosmic dashboard, get your API key located in Project > API keys.
 
 ## Download and run locally
 Download this code:
@@ -20,7 +19,8 @@ Copy the `.example.env` file to `.env`:
 ```bash
 mv .example.env .env
 ```
-and add your API keys:
+
+Add your API keys found in the Cosmic dashboard located in Project > API keys.
 ```bash
 COSMIC_BUCKET_SLUG=your_bucket_slug
 COSMIC_READ_KEY=your_bucket_read_key
